@@ -9,9 +9,9 @@ function CarritoAsideMenu() {
     <aside
       className={`${
         context.isProductOpen ? "flex" : "hidden"
-      } productDetalle flex flex-col gap-2 fixed bg-white right-0 top-[65px] border border-black rounded p-4`}
+      } productDetalle flex flex-col gap-2 fixed bg-white right-0 top-[65px] border border-black rounded px-4`}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center py-4">
         <h2 className="text-xl font-semibold">🛒 Carrito de Compras</h2>
         <button
           onClick={() => context.closeProductDetalle()}
@@ -28,16 +28,18 @@ function CarritoAsideMenu() {
         <ul className="space-y-4">
           {context.addToCart.map((item) => (
             <li key={item.id} className="flex items-center justify-between border-b pb-2">
-              <div>
-                <h3 className="text-md font-medium">{item.name}</h3>
-
-                <p className="text-sm font-semibold">${item.price}</p>
+              <div className="flex items-center gap-2">
+                <img className="h-12" src={item.images[0]} alt="" />
+                <div>
+                  <h3 className="text-md font-medium">{item.title}</h3>
+                  <p className="text-sm font-semibold">${item.price}</p>
+                </div>
               </div>
               <button
                 onClick={() => console.log("sadsd")}
                 className="text-red-500 hover:text-red-700"
               >
-                Eliminar
+                🗑️
               </button>
             </li>
           ))}

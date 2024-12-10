@@ -1,4 +1,5 @@
 .productDetalle {
-  width: 360px;
+  width: 400px;
   height: calc(100vh - 65px);
+  overflow: auto;
 }

@@ -77,7 +77,10 @@ function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <NavLink to="/cart" className="relative text-lg text-gray-600 hover:text-indigo-500">
+            <NavLink
+              to="/my-order"
+              className="relative text-lg text-gray-600 hover:text-indigo-500"
+            >
               🛒
               <span className="absolute top-[-9px] right-0 text-[10px] w-4 h-4 flex justify-center items-center bg-black text-white rounded-full">
                 {context.cart}
