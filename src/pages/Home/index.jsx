@@ -23,6 +23,7 @@ function Home() {
         })}
       </div>
       <ProductDetalle />
+     
     </div>
   );
 }

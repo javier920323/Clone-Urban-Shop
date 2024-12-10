@@ -4,13 +4,12 @@ import { ShopingCardContext } from "../../context";
 function Card(data) {
   const context = useContext(ShopingCardContext);
   const showProduct = (productDetail) => {
-    context.openProductDetalle();
     context.setProductShowDetalle(productDetail);
   };
 
   const addProductCard = (productData, e) => {
     e.stopPropagation();
-
+    context.openProductDetalle();
     context.setCart(context.cart + 1);
     context.setAddToCart([...context.addToCart, productData]);
   };

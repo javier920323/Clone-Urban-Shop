@@ -6,16 +6,16 @@ export function ShopingCardProvider({ children }) {
   //Shopping cart - Increment quantity
   const [cart, setCart] = useState(0);
 
-  //Product detail: Open/close
+  //Product detail
+  const [productShowDetalle, setProductShowDetalle] = useState({});
+
+  //Add Carrito
+  const [addToCart, setAddToCart] = useState([]);
+
+  //Carrito Aside Menu: Open/close
   const [isProductOpen, setIsProductOpen] = useState(false);
   const openProductDetalle = () => setIsProductOpen(true);
   const closeProductDetalle = () => setIsProductOpen(false);
-
-  //Product detail: show product details
-  const [productShowDetalle, setProductShowDetalle] = useState({});
-
-  //Add carrito
-  const [addToCart, setAddToCart] = useState([]);
 
   return (
     <ShopingCardContext.Provider

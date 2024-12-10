@@ -7,6 +7,7 @@ import MyOrder from "../MyOrder";
 import MyOrders from "../MyOrders";
 import Navbar from "../../components/Navbar";
 import { ShopingCardProvider } from "../../context";
+import CarritoAsideMenu from "../../components/CarritoSideMenu";
 
 const AppRoutes = () => {
   let router = useRoutes([
@@ -25,6 +26,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <AppRoutes />
+        <CarritoAsideMenu />
       </BrowserRouter>
     </ShopingCardProvider>
   );

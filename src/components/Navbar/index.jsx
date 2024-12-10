@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShopingCardContext } from "../../context";
+// import "";
 
 function Navbar() {
   const context = useContext(ShopingCardContext);
@@ -11,8 +12,8 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between gap-4 items-center h-16">
           <div className="flex items-center space-x-4 ">
-            <NavLink to="/" className="text-2xl font-bold text-gray-800 hover:text-indigo-500">
-              Tienda
+            <NavLink to="/">
+              <img className="h-[50px] rounded-full" src="../../../public/assets/logo.png" alt="" />
             </NavLink>
 
             <ul className="flex space-x-2">
@@ -82,7 +83,6 @@ function Navbar() {
                 {context.cart}
               </span>
             </NavLink>
-           
           </div>
 
           <div className="md:hidden flex items-center">
