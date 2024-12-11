@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "https://javier920323.github.io/Clone-Urban-Shop/",
+  base: "https://github.com/javier920323/Clone-Urban-Shop",
 });
 
