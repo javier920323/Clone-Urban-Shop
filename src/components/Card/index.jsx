@@ -7,21 +7,11 @@ function Card(data) {
     context.setProductShowDetalle(productDetail);
   };
 
-  const addProductCard = (productData, e) => {
+  const addCartAndShowAside = (e) => {
     e.stopPropagation();
     context.openProductDetalle();
-    context.setCart(context.cart + 1);
-    const exists = context.addToCart.find((item) => item.id === productData.id);
-    if (exists) {
-      const isProductCard = context.addToCart.map((item) =>
-        item.id === productData.id ? { ...item, cantidad: item.cantidad + 1 } : item
-      );
-      return context.setAddToCart(isProductCard);
-    }
-
-    context.setAddToCart([...context.addToCart, { ...productData, cantidad: 1 }]);
+    context.addProductCard(data.data);
   };
-
 
   return (
     <div
@@ -35,7 +25,7 @@ function Card(data) {
         <div className="flex items-center justify-between mt-4">
           <span className="text-xl font-bold text-gray-900">${data.data.price}</span>
           <button
-            onClick={(e) => addProductCard(data.data, e)}
+            onClick={(e) => addCartAndShowAside(e)}
             type="button"
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
           >

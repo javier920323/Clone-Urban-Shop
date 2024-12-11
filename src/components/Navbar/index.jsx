@@ -79,6 +79,7 @@ function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <NavLink
               to="/my-order"
+              onClick={() => context.closeProductDetalle()}
               className="relative text-lg text-gray-600 hover:text-indigo-500"
             >
               🛒

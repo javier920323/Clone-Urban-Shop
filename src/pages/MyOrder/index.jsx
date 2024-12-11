@@ -3,6 +3,19 @@ import { ShopingCardContext } from "../../context";
 
 function MyOrder() {
   const context = useContext(ShopingCardContext);
+
+  const decrementarProductCard = (data) => {
+    if (data.cantidad > 1) {
+      context.setCart((prevCart) => prevCart - data.cantidad);
+
+      context.setAddToCart((prevCartItems) => {
+        return prevCartItems.map((item) =>
+          item.id === data.id ? { ...item, cantidad: item.cantidad - 1 } : item
+        );
+      });
+    }
+  };
+
   return (
     <div className=" mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-6">Carrito de Compras</h1>
@@ -13,26 +26,34 @@ function MyOrder() {
         <div className="grid grid-cols-1 gap-4">
           {context.addToCart.map((item) => (
             <div key={item.id} className="flex items-center border-b pb-4">
-              <img
-                src={item.images[0]}
-                className="w-24 h-24 object-cover rounded-md mr-4"
-              />
+              <img src={item.images[0]} className="w-24 h-24 object-cover rounded-md mr-4" />
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">{item.title}</h2>
                 <p className="text-gray-600">${item.price} cada uno</p>
                 <div className="flex items-center mt-2">
-                  <button className="bg-gray-200 px-3 py-1 rounded-l-md hover:bg-gray-300">
+                  <button
+                    onClick={() => decrementarProductCard(item)}
+                    className="bg-gray-200 px-3 py-1 rounded-l-md hover:bg-gray-300"
+                  >
                     -
                   </button>
-                  <span className="px-4 py-1 bg-gray-100">{item.quantity}</span>
-                  <button className="bg-gray-200 px-3 py-1 rounded-r-md hover:bg-gray-300">
+                  <span className="px-4 py-1 bg-gray-100">{item.cantidad}</span>
+                  <button
+                    onClick={() => context.addProductCard(item)}
+                    className="bg-gray-200 px-3 py-1 rounded-r-md hover:bg-gray-300"
+                  >
                     +
                   </button>
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <p className="text-lg font-bold">${}</p>
-                <button className="text-red-500 hover:text-red-700 mt-2">Eliminar</button>
+                <p className="text-lg font-bold">${item.price * item.cantidad}</p>
+                <button
+                  onClick={() => context.deleteProductCard(item)}
+                  className="text-red-500 hover:text-red-700 mt-2"
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
           ))}
@@ -41,7 +62,10 @@ function MyOrder() {
 
       {context.addToCart.length > 0 && (
         <div className="mt-6 text-right">
-          <h2 className="text-2xl font-bold">Total: ${}</h2>
+          <h2 className="text-2xl font-bold">
+            Total: $
+            {context.addToCart.reduce((total, item) => total + item.price * item.cantidad, 0)}
+          </h2>
           <button className="bg-blue-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors">
             Finalizar Compra
           </button>

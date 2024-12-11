@@ -5,11 +5,6 @@ import "./carritoAsideMenu.css";
 function CarritoAsideMenu() {
   const context = useContext(ShopingCardContext);
 
-  const deleteProductCard = (data) => {
-    context.setCart(context.cart - data.cantidad);
-    context.setAddToCart(context.addToCart.filter((item) => item.id !== data.id));
-  };
-
   return (
     <aside
       className={`${
@@ -42,7 +37,7 @@ function CarritoAsideMenu() {
                 </div>
               </div>
               <button
-                onClick={() => deleteProductCard(item)}
+                onClick={() => context.deleteProductCard(item)}
                 className="text-red-500 hover:text-red-700"
               >
                 🗑️
