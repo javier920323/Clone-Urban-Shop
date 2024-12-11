@@ -6,8 +6,7 @@ function MyOrder() {
 
   const decrementarProductCard = (data) => {
     if (data.cantidad > 1) {
-      context.setCart((prevCart) => prevCart - data.cantidad);
-
+      context.setCart((prevCart) => prevCart - 1);
       context.setAddToCart((prevCartItems) => {
         return prevCartItems.map((item) =>
           item.id === data.id ? { ...item, cantidad: item.cantidad - 1 } : item
@@ -35,14 +34,14 @@ function MyOrder() {
                     onClick={() => decrementarProductCard(item)}
                     className="bg-gray-200 px-3 py-1 rounded-l-md hover:bg-gray-300"
                   >
-                    -
+                    ➖
                   </button>
                   <span className="px-4 py-1 bg-gray-100">{item.cantidad}</span>
                   <button
                     onClick={() => context.addProductCard(item)}
                     className="bg-gray-200 px-3 py-1 rounded-r-md hover:bg-gray-300"
                   >
-                    +
+                    ➕
                   </button>
                 </div>
               </div>

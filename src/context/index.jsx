@@ -7,7 +7,7 @@ export function ShopingCardProvider({ children }) {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products?offset=&limit=20")
+    fetch("https://api.escuelajs.co/api/v1/products")
       .then((response) => response.json())
       .then((data) => setProductos(data))
       .catch((err) => {
