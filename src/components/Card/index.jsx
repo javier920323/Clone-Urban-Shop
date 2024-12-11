@@ -11,7 +11,17 @@ function Card(data) {
     e.stopPropagation();
     context.openProductDetalle();
     context.setCart(context.cart + 1);
-    context.setAddToCart([...context.addToCart, productData]);
+
+    const exists = context.addToCart.find((item) => item.id === productData.id);
+
+    if (exists) {
+      const isProductCard = context.addToCart.map((item) =>
+        item.id === productData.id ? { ...item, cantidad: item.cantidad + 1 } : item
+      );
+      return context.setAddToCart(isProductCard);
+    }
+
+    context.setAddToCart([...context.addToCart, { ...productData, cantidad: 1 }]);
   };
 
   return (
