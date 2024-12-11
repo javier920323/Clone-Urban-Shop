@@ -5,9 +5,9 @@ import "./carritoAsideMenu.css";
 function CarritoAsideMenu() {
   const context = useContext(ShopingCardContext);
 
-  const deleteProductCard = (id) => {
-    context.setCart(context.cart - 1);
-    context.setAddToCart(context.addToCart.filter((item) => item.id !== id));
+  const deleteProductCard = (data) => {
+    context.setCart(context.cart - data.cantidad);
+    context.setAddToCart(context.addToCart.filter((item) => item.id !== data.id));
   };
 
   return (
@@ -30,18 +30,19 @@ function CarritoAsideMenu() {
       {context.addToCart.length === 0 ? (
         <p className="text-gray-500">El carrito está vacío.</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="space-y-2">
           {context.addToCart.map((item) => (
             <li key={item.id} className="flex items-center justify-between border-b pb-2">
               <div className="flex items-center gap-2">
                 <img className="h-12" src={item.images[0]} alt="" />
                 <div>
                   <h3 className="text-md font-medium">{item.title}</h3>
-                  <p className="text-sm font-semibold">${item.price}</p>
+                  <p className="text-sm text-gray-500">Cantidad: {item.cantidad}</p>
+                  <p className="text-sm font-semibold">${item.price * item.cantidad}</p>
                 </div>
               </div>
               <button
-                onClick={() => deleteProductCard(item.id)}
+                onClick={() => deleteProductCard(item)}
                 className="text-red-500 hover:text-red-700"
               >
                 🗑️
@@ -52,11 +53,10 @@ function CarritoAsideMenu() {
       )}
 
       {context.addToCart.length > 0 && (
-        <div className="mt-6 border-t pt-4">
+        <div className="border-t mt-auto py-2">
           <p className="text-lg font-bold">
             Total: $
-            {/* {context.addToCart
-              .reduce((total, item) => total + item.price * item.quantity, 0)} */}
+            {context.addToCart.reduce((total, item) => total + item.price * item.cantidad, 0)}
           </p>
           <button className="w-full bg-blue-600 text-white py-2 mt-4 rounded-md hover:bg-blue-700 transition-colors">
             Finalizar Compra
