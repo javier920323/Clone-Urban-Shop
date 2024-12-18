@@ -13,7 +13,7 @@ function Navbar() {
         <div className="flex justify-between gap-4 items-center h-16">
           <div className="flex items-center space-x-4 ">
             <NavLink to="/">
-              <img className="h-[50px] rounded-full" src="../../../public/assets/logo.png" alt="" />
+              <img className="h-[50px] rounded-full" src="assets/logo.png" alt="" />
             </NavLink>
 
             <ul className="flex space-x-2">
@@ -77,16 +77,15 @@ function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <NavLink
-              to="/my-order"
-              onClick={() => context.closeProductDetalle()}
+            <button
+              onClick={() => context.toogleProductDetalle()}
               className="relative text-lg text-gray-600 hover:text-indigo-500"
             >
               🛒
               <span className="absolute top-[-9px] right-0 text-[10px] w-4 h-4 flex justify-center items-center bg-black text-white rounded-full">
                 {context.cart}
               </span>
-            </NavLink>
+            </button>
           </div>
 
           <div className="md:hidden flex items-center">

@@ -7,7 +7,7 @@ export function ShopingCardProvider({ children }) {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
+    fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=10")
       .then((response) => response.json())
       .then((data) => setProductos(data))
       .catch((err) => {
@@ -45,8 +45,13 @@ export function ShopingCardProvider({ children }) {
 
   //Carrito Aside Menu: Open/close
   const [isProductOpen, setIsProductOpen] = useState(false);
+  const toogleProductDetalle = () => {
+    isProductOpen ? setIsProductOpen(false) : setIsProductOpen(true);
+  };
   const openProductDetalle = () => setIsProductOpen(true);
-  const closeProductDetalle = () => setIsProductOpen(false);
+
+  //Ordenes agregadas
+  const [order, setOrder] = useState([]);
 
   return (
     <ShopingCardContext.Provider
@@ -56,14 +61,16 @@ export function ShopingCardProvider({ children }) {
         cart,
         setCart,
         isProductOpen,
+        toogleProductDetalle,
         openProductDetalle,
-        closeProductDetalle,
         productShowDetalle,
         setProductShowDetalle,
         addToCart,
         setAddToCart,
         addProductCard,
         deleteProductCard,
+        order,
+        setOrder,
       }}
     >
       {children}

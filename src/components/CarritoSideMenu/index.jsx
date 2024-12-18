@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ShopingCardContext } from "../../context";
 import "./carritoAsideMenu.css";
+import { NavLink } from "react-router-dom";
 
 function CarritoAsideMenu() {
   const context = useContext(ShopingCardContext);
@@ -53,9 +54,14 @@ function CarritoAsideMenu() {
             Total: $
             {context.addToCart.reduce((total, item) => total + item.price * item.cantidad, 0)}
           </p>
-          <button className="w-full bg-blue-600 text-white py-2 mt-4 rounded-md hover:bg-blue-700 transition-colors">
-            Finalizar Compra
-          </button>
+          <NavLink to="/my-order">
+            <button
+              onClick={() => context.toogleProductDetalle()}
+              className="w-full bg-blue-600 text-white py-2 mt-4 rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Finalizar Compra
+            </button>
+          </NavLink>
         </div>
       )}
     </aside>

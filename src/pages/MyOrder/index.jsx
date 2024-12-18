@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useId } from "react";
 import { ShopingCardContext } from "../../context";
 
 function MyOrder() {
   const context = useContext(ShopingCardContext);
+  const idOrder = useId();
 
   const decrementarProductCard = (data) => {
     if (data.cantidad > 1) {
@@ -13,6 +14,24 @@ function MyOrder() {
         );
       });
     }
+  };
+
+  const precioTotal = () => {
+    return context.addToCart.reduce((total, item) => total + item.price * item.cantidad, 0);
+  };
+
+  const generaOrder = () => {
+    const fecha = new Date();
+    const orderAdd = {
+      id: idOrder,
+      date: fecha.toLocaleDateString("es-ES"),
+      produtos: context.addToCart,
+      totalProdutos: context.cart,
+      totalPecio: precioTotal(),
+    };
+    context.setOrder([...context.order, orderAdd]);
+    context.setAddToCart([]);
+    context.setCart(0);
   };
 
   return (
@@ -61,11 +80,11 @@ function MyOrder() {
 
       {context.addToCart.length > 0 && (
         <div className="mt-6 text-right">
-          <h2 className="text-2xl font-bold">
-            Total: $
-            {context.addToCart.reduce((total, item) => total + item.price * item.cantidad, 0)}
-          </h2>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors">
+          <h2 className="text-2xl font-bold">Total: ${precioTotal()}</h2>
+          <button
+            onClick={() => generaOrder()}
+            className="bg-blue-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors"
+          >
             Finalizar Compra
           </button>
         </div>
