@@ -15,7 +15,7 @@ function CarritoAsideMenu() {
       <div className="flex justify-between items-center py-4">
         <h2 className="text-xl font-semibold">🛒 Carrito de Compras</h2>
         <button
-          onClick={() => context.closeProductDetalle()}
+          onClick={() => context.toogleProductDetalle()}
           className="text-xl cursor-pointer hover:text-red-500 transition-colors"
           aria-label="Cerrar"
         >
@@ -59,7 +59,7 @@ function CarritoAsideMenu() {
               onClick={() => context.toogleProductDetalle()}
               className="w-full bg-blue-600 text-white py-2 mt-4 rounded-md hover:bg-blue-700 transition-colors"
             >
-              Finalizar Compra
+              Continuar
             </button>
           </NavLink>
         </div>

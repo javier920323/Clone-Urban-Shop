@@ -1,5 +1,6 @@
 import { useContext, useId } from "react";
 import { ShopingCardContext } from "../../context";
+import { NavLink } from "react-router-dom";
 
 function MyOrder() {
   const context = useContext(ShopingCardContext);
@@ -81,12 +82,14 @@ function MyOrder() {
       {context.addToCart.length > 0 && (
         <div className="mt-6 text-right">
           <h2 className="text-2xl font-bold">Total: ${precioTotal()}</h2>
-          <button
-            onClick={() => generaOrder()}
-            className="bg-blue-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors"
-          >
-            Finalizar Compra
-          </button>
+          <NavLink to="/my-orders">
+            <button
+              onClick={() => generaOrder()}
+              className="bg-blue-600 text-white px-6 py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors"
+            >
+              Finalizar Compra
+            </button>
+          </NavLink>
         </div>
       )}
     </div>
