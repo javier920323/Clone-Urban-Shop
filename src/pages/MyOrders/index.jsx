@@ -3,7 +3,6 @@ import { ShopingCardContext } from "../../context";
 
 function MyOrders() {
   const context = useContext(ShopingCardContext);
-  console.log(context.order);
   
   return (
     <div className="mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8">

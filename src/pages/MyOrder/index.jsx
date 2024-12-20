@@ -1,10 +1,10 @@
-import { useContext, useId } from "react";
+import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid"; 
 import { ShopingCardContext } from "../../context";
 import { NavLink } from "react-router-dom";
 
 function MyOrder() {
   const context = useContext(ShopingCardContext);
-  const idOrder = useId();
 
   const decrementarProductCard = (data) => {
     if (data.cantidad > 1) {
@@ -24,7 +24,7 @@ function MyOrder() {
   const generaOrder = () => {
     const fecha = new Date();
     const orderAdd = {
-      id: idOrder,
+      id: uuidv4(),
       date: fecha.toLocaleDateString("es-ES"),
       produtos: context.addToCart,
       totalProdutos: context.cart,
